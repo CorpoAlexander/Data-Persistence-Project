@@ -15,6 +15,7 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
+    private string playerName;
     
     private bool m_GameOver = false;
 
@@ -22,6 +23,10 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get the player's name and set it before the first score update
+        playerName = BootHandler.Instance.playerName;
+        ScoreText.text = $"{playerName} Score : 0";
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -65,7 +70,7 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = $"{playerName} Score : {m_Points}";
     }
 
     public void GameOver()
